@@ -7,12 +7,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LoginTests {
+public class LoginTests extends BaseTest {
 
     @Test
     public void verifyLoginWithStandardUser() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\comp\\Downloads\\chromedriver_win32\\chromedriver.exe");
-        ChromeDriver driver = new ChromeDriver();
+        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\comp\\Downloads\\chromedriver_win32\\chromedriver.exe");
+        //ChromeDriver driver = new ChromeDriver();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.openPage();
         /*loginPage.setUserName("standard_userr");
