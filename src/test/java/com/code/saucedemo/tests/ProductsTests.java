@@ -7,6 +7,7 @@ import com.code.saucedemo.pages.CartPage;
 import com.code.saucedemo.pages.LoginPage;
 import com.code.saucedemo.pages.ProductsPage;
 import com.code.saucedemo.provider.ProductsProvider;
+import com.code.saucedemo.provider.SortProvider;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -93,7 +94,7 @@ public class ProductsTests extends BaseTest {
         productsPage.selectSortBy("Price (high to low)");
         productsPage.selectSortBy("Name (A to Z)");
         productsPage.selectSortBy("Name (Z to A)");
-        productsPage.selectCheapestItem();
+        //productsPage.selectCheapestItem();
         System.out.println("test");
     }
 
@@ -125,6 +126,39 @@ public class ProductsTests extends BaseTest {
 
         productsPage.removeItem(productFirstName);
         Assert.assertEquals(productsPage.cartItemNo(), cartItemNumber + 2, "Cart number is not as expected");
+    }
+
+    @Test
+    public void verifySortProductByPriceLowToHigh() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.openPage();
+        loginPage.login(new User("standard_user", "secret_sauce"));
+
+        ProductsPage productsPage = new ProductsPage(driver);
+        //productsPage.selectSortBy("Price (low to high)");
+        productsPage.selectSortBy("Price (high to low)");
+
+        List<Product> productListActual = productsPage.getListProducts();
+
+        AssertProducts assertProducts = new AssertProducts();
+        assertProducts.assertListProductSortByPriceFromHighToLow(productListActual);
+
+    }
+
+    @Test(dataProvider = "SortingPriceDataProvider", dataProviderClass = SortProvider.class)
+    public void verifySortProductBy(String typeOfSorting) {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.openPage();
+        loginPage.login(new User("standard_user", "secret_sauce"));
+
+        ProductsPage productsPage = new ProductsPage(driver);
+        productsPage.selectSortBy(typeOfSorting);
+
+        List<Product> productListActual = productsPage.getListProducts();
+
+        AssertProducts assertProducts = new AssertProducts();
+        assertProducts.assertListProductSortByPrice(productListActual, typeOfSorting);
+
     }
 
 }

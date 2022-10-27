@@ -29,5 +29,68 @@ public class AssertProducts {
         Assert.assertEquals(isListContainsElement, true, "List is not equals");
     }
 
+    public void assertListProductSortByPriceFromLowToHigh(List<Product> actual) {
+
+        boolean isPriceSortFromLowToHigh = true;
+        Product firstProduct = actual.get(0);
+        for(int i = 1; i < actual.size(); i++) {
+            if(firstProduct.getPrice() > actual.get(i).getPrice()) {
+                isPriceSortFromLowToHigh = false;
+                break;
+            }
+        }
+        Assert.assertEquals(isPriceSortFromLowToHigh, true, "Products list is not sorted form low to high by price");
+
+    }
+
+    public void assertListProductSortByPriceFromHighToLow(List<Product> actual) {
+
+        boolean isPriceSortFromLowToHigh = true;
+        Product firstProduct = actual.get(0);
+        for(int i = 1; i < actual.size(); i++) {
+            if(firstProduct.getPrice() < actual.get(i).getPrice()) {
+                isPriceSortFromLowToHigh = false;
+                break;
+            }
+        }
+        Assert.assertEquals(isPriceSortFromLowToHigh, true, "Products list is not sorted form high to low by price");
+
+    }
+
+    public void assertListProductSortByPrice(List<Product> actual, String typeOfSorting) {
+
+        boolean isProductSort = true;
+        Product firstProduct = actual.get(0);
+        for(int i = 1; i < actual.size(); i++) {
+            if(typeOfSorting.equals("Price (high to low)")) {
+                if (firstProduct.getPrice() < actual.get(i).getPrice()) {
+                    isProductSort = false;
+                    break;
+                }
+            }
+            else if (typeOfSorting.equals("Price (low to high)")) {
+                if (firstProduct.getPrice() > actual.get(i).getPrice()) {
+                    isProductSort = false;
+                    break;
+                }
+            }
+            else if (typeOfSorting.equals("Name (A to Z)")) {
+                if (firstProduct.getName().compareTo(actual.get(i).getName()) > 0) {
+                    isProductSort = false;
+                    break;
+                }
+            }
+            else if (typeOfSorting.equals("Name (Z to A)")) {
+                if (firstProduct.getName().compareTo(actual.get(i).getName()) < 0) {
+                    isProductSort = false;
+                    break;
+                }
+            }
+            firstProduct = actual.get(i);
+        }
+        Assert.assertEquals(isProductSort, true, "Products list is not sorted by price from " + typeOfSorting);
+
+    }
+
 
 }
