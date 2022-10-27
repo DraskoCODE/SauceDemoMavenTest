@@ -18,7 +18,8 @@ public class LoginTests extends BaseTest {
         /*loginPage.setUserName("standard_userr");
         loginPage.setPassword("secret_sauce");
         loginPage.clickOnLogin();*/
-        loginPage.login(new User("standard_user", "secret_sauce"));
+        User user = new User("standard_user", "secret_sauce");
+        loginPage.login(user);
 
         ProductsPage productsPage = new ProductsPage(driver);
         Assert.assertEquals(productsPage.isDisplayed(), true);
