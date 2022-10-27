@@ -161,4 +161,37 @@ public class ProductsTests extends BaseTest {
 
     }
 
+    @Test(dataProvider = "ProductsNameProvider", dataProviderClass = ProductsProvider.class)
+    public void verifyRemoveProduct(String productName) {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.openPage();
+        loginPage.login(new User("standard_user", "secret_sauce"));
+
+        ProductsPage productsPage = new ProductsPage(driver);
+        productsPage.addItemToCartByName(productName);
+        int productInCartExpected = productsPage.cartItemNo(); //3
+        productsPage.removeItem(productName); //-1
+        int productInCartActual = productsPage.cartItemNo(); //2
+
+        Assert.assertEquals(productInCartActual, productInCartExpected - 1, "Product number in cart is not as expected");
+    }
+
+    @Test(dataProvider = "ProductsNameProviderList", dataProviderClass = ProductsProvider.class)
+    public void verifyRemoveProductList(String productNameFirst, String productNameSecond, String productNameThird) {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.openPage();
+        loginPage.login(new User("standard_user", "secret_sauce"));
+
+        ProductsPage productsPage = new ProductsPage(driver);
+        productsPage.addItemToCartByName(productNameFirst);
+        productsPage.addItemToCartByName(productNameSecond);
+        productsPage.addItemToCartByName(productNameThird);
+        int productInCartExpected = productsPage.cartItemNo(); //3
+        productsPage.removeItem(productNameSecond);
+        productsPage.removeItem(productNameThird);//-1
+        int productInCartActual = productsPage.cartItemNo(); //2
+
+        Assert.assertEquals(productInCartActual, productInCartExpected - 2, "Product number in cart is not as expected");
+    }
+
 }

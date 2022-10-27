@@ -84,6 +84,7 @@ public class ProductsPage {
                 break;
             }
         }
+
         WebElement btnRemove = webElementList.get(index).findElement(By.xpath(".//button"));
         btnRemove.click();
     }
@@ -119,11 +120,11 @@ public class ProductsPage {
     }
 
     public int cartItemNo(){
-        WebElement cartLink= this.driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
-        List<WebElement> spanList= cartLink.findElements(By.xpath(".//span"));
+        WebElement cartLink = this.driver.findElement(By.xpath("//a[@class='shopping_cart_link']"));
+        List<WebElement> spanList = cartLink.findElements(By.xpath(".//span"));
         int noOfItems;
         if (spanList.size()!=0){
-            noOfItems=Integer.parseInt(spanList.get(0).getText());
+            noOfItems = Integer.parseInt(spanList.get(0).getText());
         }
         else {
             noOfItems=0;

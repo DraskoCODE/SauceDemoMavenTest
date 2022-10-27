@@ -19,6 +19,15 @@ public class ProductsProvider {
         };
     }
 
+    @DataProvider(name = "ProductsNameProviderList")
+    public static Object[][] getDataProductNameList(){
+        return new Object[][] {
+                { "Sauce Labs Backpack", "Sauce Labs Bike Light", "Sauce Labs Bolt T-Shirt"},
+                { "Sauce Labs Backpack", "Test.allTheThings() T-Shirt (Red)", "Sauce Labs Onesie"},
+
+        };
+    }
+
     @DataProvider(name = "ProductsNameProviderOnCartPage")
     public static Object[][] getDataProductNameOnCartPage(){
         return new Object[][] {
