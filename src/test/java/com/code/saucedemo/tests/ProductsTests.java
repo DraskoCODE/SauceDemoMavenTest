@@ -20,9 +20,6 @@ public class ProductsTests extends BaseTest {
 
     @Test(dataProvider = "ProductsNameProvider", dataProviderClass = ProductsProvider.class)
     public void verifyAddToCart(String nameOfProduct) {
-        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\comp\\Downloads\\chromedriver_win32\\chromedriver.exe");
-        //ChromeDriver driver = new ChromeDriver();
-
         LoginPage loginPage = new LoginPage(driver);
         loginPage.openPage();
         loginPage.login(new User("standard_user", "secret_sauce"));
@@ -31,15 +28,7 @@ public class ProductsTests extends BaseTest {
         int currentProductNumInCart = productsPage.cartItemNo();
         productsPage.addItemToCartByName(nameOfProduct);
         Assert.assertEquals(productsPage.cartItemNo(), currentProductNumInCart + 1, "Num in product is not as expected");
-        //productsPage.addItemToCartByName("Sauce Labs Onesie");
-        //productsPage.addItemToCartByName("Test.allTheThings() T-Shirt (Red)");
 
-        //List<String> listOfProducts = new ArrayList<>();
-        //listOfProducts.add("Sauce Labs Bolt T-Shirt");
-        //listOfProducts.add("Sauce Labs Onesie");
-        //productsPage.addItemToCartByName(listOfProducts);
-
-        //productsPage.addAllItemsToCart();
     }
 
     @Test()
@@ -192,6 +181,16 @@ public class ProductsTests extends BaseTest {
         int productInCartActual = productsPage.cartItemNo(); //2
 
         Assert.assertEquals(productInCartActual, productInCartExpected - 2, "Product number in cart is not as expected");
+    }
+
+
+    @Test
+    public void verifyAssertProduct() {
+        Product productJaffa = new Product("Jaffa", 150.0, "Keks");
+        Product productPlazma = new Product("Plazme", 112.0, "Keks");
+
+        AssertProducts assertProducts = new AssertProducts();
+        assertProducts.assertHardProduct(productJaffa, productPlazma);
     }
 
 }

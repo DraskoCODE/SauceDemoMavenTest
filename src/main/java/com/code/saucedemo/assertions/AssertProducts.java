@@ -2,10 +2,30 @@ package com.code.saucedemo.assertions;
 
 import com.code.saucedemo.models.Product;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
 public class AssertProducts {
+
+    public void assertProduct(Product actual, Product expected) {
+       SoftAssert softAssert = new SoftAssert();
+
+       softAssert.assertEquals(actual.getName(), expected.getName(), "Name is not equal");
+       softAssert.assertEquals(actual.getPrice(), expected.getPrice(), "Price is not equal");
+       softAssert.assertEquals(actual.getSrc(), expected.getSrc(), "Source is not equal");
+
+       softAssert.assertAll();
+
+    }
+
+    public void assertHardProduct(Product actual, Product expected) {
+
+        Assert.assertEquals(actual.getName(), expected.getName(), "Name is not equal");
+        Assert.assertEquals(actual.getPrice(), expected.getPrice(), "Price is not equal");
+        Assert.assertEquals(actual.getSrc(), expected.getSrc(), "Source is not equal");
+
+    }
 
     public void assertListOfProducts(List<Product> actual, List<Product> expected) {
         Assert.assertEquals(actual.size(), expected.size(), "List size is not as expected");

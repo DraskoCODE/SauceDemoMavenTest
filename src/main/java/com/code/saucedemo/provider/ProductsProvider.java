@@ -12,10 +12,10 @@ public class ProductsProvider {
         return new Object[][] {
                 { "Sauce Labs Backpack"},
                 { "Sauce Labs Bike Light" },
-                { "Sauce Labs Bolt T-Shirt" },
-                {"Sauce Labs Onesie"},
-                {"Sauce Labs Fleece Jacket"},
-                {"Test.allTheThings() T-Shirt (Red)"}
+                //{ "Sauce Labs Bolt T-Shirt" },
+                //{"Sauce Labs Onesie"},
+                //{"Sauce Labs Fleece Jacket"},
+                //{"Test.allTheThings() T-Shirt (Red)"}
         };
     }
 
@@ -43,12 +43,12 @@ public class ProductsProvider {
         };
     }
 
-   /* @DataProvider(name = "ProductsProvider")
+   @DataProvider(name = "ProductsProvider")
     public static Object[][] getDataProduct(){
         return new Object[][] {
                 { new Product("Sauce Labs Bike Light", 152.0)}
         };
-    }*/
+    }
 
 
 }

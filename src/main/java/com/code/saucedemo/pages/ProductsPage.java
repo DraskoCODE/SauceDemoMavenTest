@@ -5,8 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +36,10 @@ public class ProductsPage {
     }
 
     public List<WebElement> getInventoryItems() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000));
+        wait.until(
+                ExpectedConditions.numberOfElementsToBe(By.className("inventory_list"), 1));
+
         WebElement inventoryList = this.driver.findElement(By.xpath("//div[@class='inventory_list']"));
         return inventoryList.findElements(By.xpath(".//div[@class='inventory_item']"));
     }
