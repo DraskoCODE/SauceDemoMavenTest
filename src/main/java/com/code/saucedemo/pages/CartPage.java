@@ -10,9 +10,18 @@ import org.openqa.selenium.devtools.v85.webaudio.WebAudio;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartPage {
+public class CartPage extends BasePage {
+    public CartPage(WebDriver driver) {
+        super(driver);
+    }
 
-    private WebDriver driver;
+    @Override
+    public void openPage() {
+
+    }
+
+
+   /* private WebDriver driver;
 
     public WebDriver getDriver() {
         return driver;
@@ -24,7 +33,7 @@ public class CartPage {
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
-    }
+    }*/
 
     public WebElement getCartList() {
         return this.driver.findElement(By.xpath("//div[@class='cart_list']"));

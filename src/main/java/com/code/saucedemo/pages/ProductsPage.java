@@ -13,9 +13,12 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductsPage {
+public class ProductsPage extends BasePage {
+    public ProductsPage(WebDriver driver) {
+        super(driver);
+    }
 
-    private WebDriver driver;
+    /*private WebDriver driver;
 
 
     public WebDriver getDriver() {
@@ -28,7 +31,7 @@ public class ProductsPage {
 
     public ProductsPage(WebDriver driver){
         this.driver = driver;
-    }
+    }*/
 
     public void openPage() {
         this.driver.get("https://www.saucedemo.com/inventory.html");
@@ -36,7 +39,7 @@ public class ProductsPage {
     }
 
     public List<WebElement> getInventoryItems() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(6000));
         wait.until(
                 ExpectedConditions.numberOfElementsToBe(By.className("inventory_list"), 1));
 

@@ -112,5 +112,19 @@ public class AssertProducts {
 
     }
 
+    public void assertProducts(Product actualProduct, Product expectedProduct) {
+        Assert.assertEquals(actualProduct.getName(), expectedProduct.getName(), "Name is not equal");
+        Assert.assertEquals(actualProduct.getPrice(), expectedProduct.getPrice(), "Price is not equal");
+        Assert.assertEquals(actualProduct.getSrc(), expectedProduct.getSrc(), "Source is not equal");
+    }
+
+    public void softAssertProducts(Product actualProduct, Product expectedProduct) {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(actualProduct.getName(), expectedProduct.getName(), "Name is not equal");
+        softAssert.assertEquals(actualProduct.getPrice(), expectedProduct.getPrice(), "Price is not equal");
+        softAssert.assertEquals(actualProduct.getSrc(), expectedProduct.getSrc(), "Source is not equal");
+        softAssert.assertAll();
+    }
+
 
 }

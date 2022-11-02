@@ -12,10 +12,10 @@ public class ProductsProvider {
         return new Object[][] {
                 { "Sauce Labs Backpack"},
                 { "Sauce Labs Bike Light" },
-                //{ "Sauce Labs Bolt T-Shirt" },
-                //{"Sauce Labs Onesie"},
-                //{"Sauce Labs Fleece Jacket"},
-                //{"Test.allTheThings() T-Shirt (Red)"}
+                { "Sauce Labs Bolt T-Shirt" },
+                {"Sauce Labs Onesie"},
+                {"Sauce Labs Fleece Jacket"},
+                {"Test.allTheThings() T-Shirt (Red)"}
         };
     }
 

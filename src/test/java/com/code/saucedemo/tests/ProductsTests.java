@@ -3,6 +3,7 @@ package com.code.saucedemo.tests;
 import com.code.saucedemo.assertions.AssertProducts;
 import com.code.saucedemo.models.Product;
 import com.code.saucedemo.models.User;
+import com.code.saucedemo.pages.BasePage;
 import com.code.saucedemo.pages.CartPage;
 import com.code.saucedemo.pages.LoginPage;
 import com.code.saucedemo.pages.ProductsPage;
@@ -132,6 +133,19 @@ public class ProductsTests extends BaseTest {
         AssertProducts assertProducts = new AssertProducts();
         assertProducts.assertListProductSortByPriceFromHighToLow(productListActual);
 
+    }
+
+    @Test
+    public void verifyProducts() {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.openPage();
+        loginPage.login(new User("standard_user", "secret_sauce"));
+
+        ProductsPage productsPage = new ProductsPage(driver);
+        List<Product> productListActual = productsPage.getListProducts();
+
+        AssertProducts assertProducts = new AssertProducts();
+        assertProducts.softAssertProducts(productListActual.get(0), productListActual.get(1));
     }
 
     @Test(dataProvider = "SortingPriceDataProvider", dataProviderClass = SortProvider.class)

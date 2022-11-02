@@ -6,9 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
-    private WebDriver driver;
+   /* private WebDriver driver;
 
 
     public WebDriver getDriver() {
@@ -21,7 +24,7 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-    }
+    }*/
 
     public void openPage() {
         this.driver.get("https://www.saucedemo.com/");
